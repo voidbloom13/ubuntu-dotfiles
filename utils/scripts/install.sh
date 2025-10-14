@@ -2,6 +2,14 @@
 
 # This script goes through installing all of my default programs.
 
+if [[ -d "$HOME/ubuntu-dotfiles" ]] && [[ ! -d "$HOME/dotfiles" ]]; then
+  echo "Renaming '$HOME/ubuntu-dotfiles' to '$HOME/dotfiles'..."
+  mv $HOME/ubuntu-dotfiles $HOME/dotfiles
+else
+  echo "Error with folder structure. Please backup current '$HOME/dotfiles' directory and rename, move, or delete it from your home directory."
+  exit 1
+fi
+
 # Initial update/upgrade and installs initial software
 sudo apt update && 
 sudo apt upgrade -y && 
@@ -54,7 +62,7 @@ bash $HOME/dotfiles/utils/scripts/install-fonts.sh
 bash $HOME/dotfiles/utils/scripts/stow.sh
 
 read -p "Setup git/github? [Y/n] " git_config
-git_config=${git-config:-Y}
+git_config=${git_config:-Y}
 case $git_config in
   [yY] )
     read -p "Git Name: " git_name
