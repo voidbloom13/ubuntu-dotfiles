@@ -13,7 +13,8 @@ fi
 # Initial update/upgrade and installs initial software
 sudo apt update && 
 sudo apt upgrade -y && 
-sudo apt-get install -y build-essential cifs-utils curl default-jdk gcc gh git kitty maven nala neofetch nodejs npm python3 python3-pip python3-venv ripgrep stow tmux tree unzip zoxide zsh
+sudo apt-get install -y nala
+sudo nala install -y build-essential cifs-utils curl default-jdk gcc gh git kitty maven nala neofetch nodejs npm postgresql postgresql-contrib python3 python3-pip python3-venv ripgrep stow tmux tree unzip zoxide zsh
 
 # Installs latest fzf
 rm -rf ~/.fzf
@@ -63,6 +64,7 @@ git clone -b v2.1.3 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugin
 # Final Setup
 bash $HOME/dotfiles/utils/scripts/install-fonts.sh
 bash $HOME/dotfiles/utils/scripts/stow.sh
+source .bashrc
 
 read -p "Setup git/github? [Y/n] " git_config
 git_config=${git_config:-Y}
@@ -86,6 +88,7 @@ sudo apt-get autoremove
 
 # Next Steps
 cd && clear && neofetch && echo -e "\n\e[1;36mNext Steps\e[0m"
-echo -e "*Complete \e[32mTMUX\e[0m setup by running [tmux] and pressing [<ctrl>+b, i] to install TPM plugins."
-echo -e "*Change user shell to \e[31mzsh\e[0m with chsh."
+echo -e "*Complete \e[1;32mTMUX\e[0m setup by running \e[1;32m[tmux]\e[0m and pressing \e[1;32m[<ctrl>+b, I]\e[0m to install TPM plugins."
+echo -e "*Change user shell to \e[1;31mZSH\e[0m with \e[1;31m[chsh]\e[0m.\n\t- Location: \e[1;31m/usr/bin/zsh\e[0m"
+echo -e "Set up \e[1;36mPostgresql\e[0m by running \e[1;36m[sudo -u postgres createuser --interactive]\e[0m.\n\t- Create a new database by using \e[1;36mcreatedb <db-name>\e[0m\n\t- Connect to your database by using \e[1;36mpsql -d <db-name>\e[0m"
 echo -e "*Reboot and enjoy!"
