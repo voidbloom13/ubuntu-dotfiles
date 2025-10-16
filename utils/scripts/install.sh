@@ -46,6 +46,9 @@ sudo apt-get install google-chrome-stable
 
 # Installs Node Version Manager (NVM) and NodeJS LTS
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 nvm install --lts
 nvm use --lts
 
@@ -67,7 +70,7 @@ case $git_config in
   [yY] )
     read -p "Git Name: " git_name
     read -p "Git Email: " git_email
-    git config --global user.name "$git_name" && git config -- global user.email "$git_email"
+    git config --global user.name "$git_name" && git config --global user.email "$git_email"
     gh auth login
     ;;
   * )
