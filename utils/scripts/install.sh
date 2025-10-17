@@ -80,14 +80,6 @@ case $git_config in
     ;;
 esac
 
-# Installs SDDM and Theme
-sudo nala install sddm
-sudo systemctl disable cosmic-greeter && sudo systemctl enable sddm
-if [[ -d "$HOME/sddm-astronaut-theme" ]]; then
-	rm -rf $HOME/sddm-astronaut-theme
-fi
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-theme/master/setup.sh)"
-
 # Cleanup
 sudo apt update && sudo apt upgrade -y
 sudo apt-get clean
