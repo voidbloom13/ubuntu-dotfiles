@@ -80,6 +80,14 @@ case $git_config in
     ;;
 esac
 
+# Installs SDDM and Theme
+sudo nala install sddm
+sudo systemctl disable cosmic-greeter && sudo systemctl enable sddm
+if [[ -d "$HOME/sddm-astronaut-theme" ]]; then
+	rm -rf $HOME/sddm-astronaut-theme
+fi
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-theme/master/setup.sh)"
+
 # Cleanup
 sudo apt update && sudo apt upgrade -y
 sudo apt-get clean
@@ -90,5 +98,5 @@ sudo apt-get autoremove
 cd && clear && neofetch && echo -e "\n\e[1;36mNext Steps\e[0m"
 echo -e "*Complete \e[1;32mTMUX\e[0m setup by running \e[1;32m[tmux]\e[0m and pressing \e[1;32m[<ctrl>+b, I]\e[0m to install TPM plugins."
 echo -e "*Change user shell to \e[1;31mZSH\e[0m with \e[1;31m[chsh]\e[0m.\n\t- Location: \e[1;31m/usr/bin/zsh\e[0m"
-echo -e "Set up \e[1;36mPostgresql\e[0m by running \e[1;36m[sudo -u postgres createuser --interactive]\e[0m.\n\t- Create a new database by using \e[1;36mcreatedb <db-name>\e[0m\n\t- Connect to your database by using \e[1;36mpsql -d <db-name>\e[0m"
+echo -e "*Set up \e[1;36mPostgresql\e[0m by running \e[1;36m[sudo -u postgres createuser --interactive]\e[0m.\n\t- Create a new database by using \e[1;36mcreatedb <db-name>\e[0m\n\t- Connect to your database by using \e[1;36mpsql -d <db-name>\e[0m"
 echo -e "*Reboot and enjoy!"
